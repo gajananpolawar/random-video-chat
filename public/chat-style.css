@@ -1,0 +1,477 @@
+ /* ====================================================================
+   1. GLOBAL STYLES & PREMIUM DARK THEME
+   ==================================================================== */
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    text-align: center; 
+    background: linear-gradient(135deg, #141526 0%, #0f101d 100%); 
+    color: #f1f1f1; 
+    margin: 0; 
+    padding: 0; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 28px;
+    margin: 20px 0 10px 0;
+    background: linear-gradient(45deg, #007bff, #ff007f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+#status { 
+    font-size: 14px;
+    font-weight: 500; 
+    color: #00ecff; 
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 236, 255, 0.3);
+}
+
+.main-container { 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px; 
+    max-width: 1400px;
+    width: 95%;
+    margin: 0 auto 30px auto;
+    flex: 1;
+}
+
+/* ====================================================================
+   2. VIDEO LAYOUT & LAYERS
+   ==================================================================== */
+.video-section {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.video-container { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    width: 100%; 
+    flex-wrap: wrap; 
+}
+
+.video-box {
+    position: relative;
+    background: #1b1d36;
+    border-radius: 20px; 
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease;
+}
+.video-box:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 123, 255, 0.5);
+}
+
+/* Local Video (Smaller & Side) */
+.local-video-box {
+    flex: 0.3;
+    min-width: 200px;
+}
+.local-video-box h3 {
+    margin: 5px 0 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #a5a6f6;
+}
+.local-video-box video {
+    height: 150px;
+}
+
+/* Remote Video (Larger & Main) */
+.remote-video-box {
+    flex: 1;
+    min-width: 400px;
+}
+.remote-video-box video {
+    height: 400px;
+}
+
+video { 
+    width: 100%; 
+    object-fit: cover;
+    background: #090a10; 
+    border-radius: 15px; 
+    transform: scaleX(-1); 
+    box-shadow: inset 0 0 25px rgba(0,0,0,0.9);
+}
+
+/* Full Screen Button */
+#fullScreenBtn {
+    background: rgba(255, 255, 255, 0.1); 
+    color: white; 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    padding: 5px 12px; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-size: 12px; 
+    font-weight: 600; 
+    transition: background 0.2s, border-color 0.2s;
+}
+#fullScreenBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #007bff;
+}
+
+/* ====================================================================
+   3. PRIVACY CONTROLS BAR
+   ==================================================================== */
+.controls-bar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background: rgba(27, 29, 54, 0.8);
+    padding: 15px;
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.control-btn {
+    background: #252849;
+    color: #e1e1e1;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.control-btn:hover {
+    background: #323663;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.control-btn.active {
+    background: #e91e63; 
+    border-color: #ff4081;
+    color: white;
+    box-shadow: 0 0 12px rgba(233, 30, 99, 0.5);
+}
+
+/* ====================================================================
+   4. AR FACE FILTERS SLIDER SYSTEM
+   ==================================================================== */
+.filter-section-bar {
+    background: rgba(27, 29, 54, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 12px 15px;
+    backdrop-filter: blur(10px);
+    margin-top: 5px;
+}
+
+.filter-section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #a5a6f6;
+    text-align: left;
+    margin: 0 0 8px 5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.filter-slider {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 5px 2px;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for Filters */
+.filter-slider::-webkit-scrollbar {
+    height: 5px;
+}
+.filter-slider::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.filter-slider::-webkit-scrollbar-thumb {
+    background: rgba(0, 236, 255, 0.3);
+    border-radius: 10px;
+}
+.filter-slider::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 236, 255, 0.6);
+}
+
+/* Filter Item Container */
+.filter-item-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Round Filter Button */
+.filter-item-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #252849;
+    color: #e1e1e1;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px; 
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.filter-item-btn:hover {
+    transform: scale(1.1);
+    border-color: #007bff;
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.4);
+}
+.filter-item-btn.active {
+    background: linear-gradient(135deg, #007bff, #00ecff);
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 236, 255, 0.6);
+}
+
+.filter-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #cbd5e1;
+    margin-top: 6px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* ====================================================================
+   5. CHAT TEXT CONTAINER & BUBBLES
+   ==================================================================== */
+.chat-container { 
+    flex: 0.7;
+    background: #1b1d36; 
+    border-radius: 20px; 
+    padding: 20px; 
+    box-sizing: border-box; 
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    min-width: 350px;
+}
+
+.lang-selector-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #090a10;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.lang-selector-bar select {
+    margin: 0; 
+    padding: 5px 10px; 
+    font-size: 12px; 
+    width: auto; 
+    background: #252849;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+
+#chatBox { 
+    flex: 1;
+    height: 320px; 
+    overflow-y: auto; 
+    background: #090a10; 
+    border-radius: 15px; 
+    padding: 15px; 
+    text-align: left; 
+    margin-bottom: 12px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    border: 1px solid rgba(255,255,255,0.03);
+}
+
+.message { 
+    padding: 10px 16px; 
+    border-radius: 16px; 
+    max-width: 80%; 
+    font-size: 15px;
+    line-height: 1.5;
+    word-wrap: break-word; 
+    box-shadow: 0 3px 7px rgba(0,0,0,0.15);
+}
+.me { 
+    background: linear-gradient(135deg, #007bff, #0056b3); 
+    color: white;
+    align-self: flex-end; 
+    border-bottom-right-radius: 3px;
+}
+.stranger { 
+    background: #252849; 
+    color: #f1f1f1;
+    align-self: flex-start; 
+    border-bottom-left-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Suggestion Tabs Horizontal Box */
+.suggestion-container {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 0 10px 0;
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+.suggestion-container::-webkit-scrollbar {
+    height: 4px;
+}
+.suggestion-container::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+}
+
+.suggest-btn {
+    background: #252849;
+    color: #f1f1f1;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+.suggest-btn:hover {
+    background: #007bff;
+    border-color: #00ecff;
+    color: white;
+}
+
+.chat-input-area { 
+    display: flex; 
+    gap: 10px; 
+}
+
+#messageInput { 
+    flex: 1; 
+    padding: 14px; 
+    border-radius: 10px; 
+    border: 1px solid rgba(255,255,255,0.1);
+    outline: none;
+    background: #252849;
+    color: white;
+    font-size: 15px;
+    transition: border 0.2s;
+}
+#messageInput:focus {
+    border-color: #007bff;
+}
+
+#sendBtn { 
+    padding: 0 25px; 
+    background: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.2s;
+}
+#sendBtn:hover { background: #0056b3; }
+#sendBtn:disabled, #messageInput:disabled {
+    background: #141526;
+    color: #666;
+    border-color: transparent;
+    cursor: not-allowed;
+}
+
+#nextBtn {
+    width: 100%; 
+    margin-top: 15px; 
+    padding: 14px; 
+    background: linear-gradient(45deg, #ff007f, #7928ca); 
+    color: white; 
+    border: none; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255, 0, 127, 0.3);
+}
+#nextBtn:hover {
+    background: linear-gradient(45deg, #ff1a8c, #8a3cd8); 
+    box-shadow: 0 8px 25px rgba(255, 0, 127, 0.5);
+    transform: translateY(-2px);
+}
+#nextBtn:disabled {
+    background: #666;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ====================================================================
+   6. RESPONSIVE LAYOUT FOR MOBILE DEVICES
+   ==================================================================== */
+@media (max-width: 992px) {
+    .main-container {
+        flex-direction: column;
+        width: 90%;
+    }
+    .local-video-box, .remote-video-box {
+        min-width: 100%;
+    }
+    .local-video-box video {
+        height: 120px;
+    }
+    .remote-video-box video {
+        height: 300px;
+    }
+    .chat-container {
+        height: 420px;
+        min-width: 100%;
+    }
+}
+/* फिल्टर बटन्स वर आणण्यासाठी आणि ते क्लिकेबल करण्यासाठी */
+.filter-item-btn {
+    position: relative !important;
+    z-index: 999 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+/* ॲक्टिव्ह बटण हायलाइट करण्यासाठी */
+.filter-item-btn.active {
+    background: #00ecff !important;
+    color: #000 !important;
+    box-shadow: 0 0 15px #00ecff !important;
+}
+
+/* लोकल व्हिडिओवर CSS फिल्टर अचूक लागू होण्यासाठी */
+#localVideo {
+    position: relative !important;
+    z-index: 1 !important;
+    transform: scaleX(-1); /* कॅमेरा मिरर इफेक्टसाठी */
+    transition: filter 0.3s ease-in-out !important; /* इफेक्ट स्मूथ दिसण्यासाठी */
+}

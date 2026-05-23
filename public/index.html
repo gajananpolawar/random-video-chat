@@ -1,0 +1,129 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Random Video Chat</title>
+    <link rel="stylesheet" href="chat-style.css">
+</head>
+<body>
+    <h1>Random Video & Text Chat</h1>
+    <div id="status">Connecting to devices...</div>
+    
+    <div class="main-container">
+        <div class="video-section">
+            <div class="video-container">
+                <div class="video-box local-video-box">
+                    <h3 id="localName">You (Local)</h3>
+                    <video id="localVideo" autoplay playsinline muted></video>
+                </div>
+                <div class="video-box remote-video-box">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 8px 0 15px 0;">
+                        <h3 id="remoteName" style="margin: 0;">Stranger (Remote)</h3>
+                        <button id="fullScreenBtn">Full Screen ⛶</button>
+                    </div>
+                    <video id="remoteVideo" autoplay playsinline></video>
+                </div>
+            </div>
+
+            <div class="filter-section-bar">
+                <div class="filter-section-title">🎭 Live AR Face Filters</div>
+                <div id="filterSlider" class="filter-slider">
+                    <div class="filter-item-wrapper">
+                        <button class="filter-item-btn active" data-filter="none">❌</button>
+                        <span class="filter-label">None</span>
+                    </div>
+                    <div class="filter-item-wrapper">
+                        <button class="filter-item-btn" data-filter="glasses">😎</button>
+                        <span class="filter-label">Cool Glasses</span>
+                    </div>
+                    <div class="filter-item-wrapper">
+                        <button class="filter-item-btn" data-filter="hat">🎩</button>
+                        <span class="filter-label">Magic Hat</span>
+                    </div>
+                    <div class="filter-item-wrapper">
+                        <button class="filter-item-btn" data-filter="mustache">👨🏻</button>
+                        <span class="filter-label">Mustache</span>
+                    </div>
+                    <div class="filter-item-wrapper">
+                        <button class="filter-item-btn" data-filter="clown">🤡</button>
+                        <span class="filter-label">Clown Mask</span>
+                    </div>
+                    <div class="filter-item-wrapper">
+                        <button class="filter-item-btn" data-filter="cat">🐱</button>
+                        <span class="filter-label">Cute Cat</span>
+                    </div>
+                    <div class="filter-item-wrapper">
+                        <button class="filter-item-btn" data-filter="devil">😈</button>
+                        <span class="filter-label">Neon Devil</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-bar">
+                <button id="muteMicBtn" class="control-btn">Mic On 🎤</button>
+                <button id="videoCamBtn" class="control-btn">Cam On 📷</button>
+                <button id="reportBtn" class="control-btn" style="background: #dc3545; border-color: #ff4d4d; color: white;">Report Abuse 🚫</button>
+                <button id="settingsBtn" class="control-btn">Settings ⚙️</button>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="lang-selector-bar">
+                <label for="chatLang" style="margin: 0; color: #00ecff; font-size: 12px; font-weight: 600;">Translate Chat To:</label>
+                <select id="chatLang">
+                    <option value="en">English 🇬🇧</option>
+                    <option value="mr">मराठी 🚩</option>
+                    <option value="hi">हिंदी 🇮🇳</option>
+                </select>
+            </div>
+
+            <div id="chatBox">
+                <div style="color: #888; text-align: center; font-size: 14px; margin-top: 30px;">Messages will appear here...</div>
+            </div>
+
+            <div id="suggestionBox" class="suggestion-container">
+                <button class="suggest-btn" data-msg="Hello! 👋">Hello! 👋</button>
+                <button class="suggest-btn" data-msg="How are you?">How are you?</button>
+                <button class="suggest-btn" data-msg="Where are you from?">Where from?</button>
+                <button class="suggest-btn" data-msg="Nice to meet you!">Nice to meet you!</button>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="messageInput" placeholder="Type a message..." disabled />
+                <button id="sendBtn" disabled>Send</button>
+            </div>
+            <button id="nextBtn">Next Stranger ➡️</button>
+        </div>
+    </div>
+
+    <div id="reportModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 9999;">
+        <div style="background: #1b1d36; padding: 25px; border-radius: 15px; width: 90%; max-width: 350px; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="margin-top: 0; color: #ff4d4d;">Report Stranger 🚨</h3>
+            
+            <label style="color: #ccc; font-size: 13px;">Select Reason:</label>
+            <select id="reportReason" style="width:100%; padding:10px; margin: 8px 0 15px 0; background:#252849; color:white; border-radius:8px; border:none;">
+                <option value="Pornography / Nudity">Pornography / Nudity 🔞</option>
+                <option value="Verbal Abuse / Harassment">Harassment 🤬</option>
+                <option value="Fake Camera / Frozen Screen">Fake Camera 📷</option>
+            </select>
+
+            <label style="color: #ccc; font-size: 13px;">Ban Duration:</label>
+            <select id="banTime" style="width:100%; padding:10px; margin: 8px 0 20px 0; background:#252849; color:white; border-radius:8px; border:none;">
+                <option value="5">5 Minutes ⏱️</option>
+                <option value="10">10 Minutes ⏱️</option>
+                <option value="30">30 Minutes ⏱️</option>
+                <option value="1440">24 Hours (1 Day) 🚫</option>
+            </select>
+
+            <div style="display:flex; gap:10px;">
+                <button id="submitReportBtn" style="flex:1; padding:12px; background:#dc3545; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Submit Ban</button>
+                <button id="closeReportBtn" style="flex:1; padding:12px; background:#444; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Random Video Chat</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #141526; color: #f1f1f1; padding: 40px 20px; line-height: 1.7; max-width: 800px; margin: 0 auto; }
+        h1 { color: #ff007f; font-size: 32px; border-bottom: 2px solid rgba(255, 0, 127, 0.2); padding-bottom: 10px; }
+        h2 { color: #00ecff; font-size: 20px; margin-top: 30px; }
+        p, li { color: #cbd5e1; font-size: 15px; }
+        ul { padding-left: 20px; }
+        strong { color: #fff; }
+        .back-btn { display: inline-block; background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 8px; margin-bottom: 25px; font-weight: bold; transition: background 0.2s; }
+        .back-btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <a href="/login.html" class="back-btn">⬅️ Back to Login</a>
+    <h1>Privacy Policy</h1>
+    <p><strong>Last Updated: May 2026</strong></p>
+    <p>Your privacy is fundamentally important to us. This policy details how our system processes user metadata and ensures a secure chatting environment.</p>
+    
+    <h2>1. Information We Collect</h2>
+    <p>We prioritize minimal data collection. We do not require account registration, passwords, or personal identity documents. The infrastructure briefly tracks:</p>
+    <ul>
+        <li><strong>User-Provided Attributes:</strong> The temporary custom username, gender, and regional preference input during session initiation.</li>
+        <li><strong>Session Telemetry:</strong> Connection indicators, socket instances, and temporary masking identifiers required to securely match peers.</li>
+    </ul>
+
+    <h2>2. Video & Audio Stream Architecture</h2>
+    <p>Media data transmission is completely encrypted and processed natively via **Peer-to-Peer architecture (WebRTC technology)**. Video streams and text messages are handled directly from browser to browser. <strong>No media streams are ever captured, inspected, intercepted, or saved on our servers.</strong></p>
+
+    <h2>3. Incident Logging & Ban Data</h2>
+    <p>To enforce our platform's safety guardrails, if a user is explicitly flagged for pornography or harassment, their identifier is securely committed to our backend SQLite database storage alongside a timestamp expiration limit. This data is exclusively utilized to restrict network access for the duration of the ban enforcement window.</p>
+
+    <h2>4. Third-Party Disclosures</h2>
+    <p>We do not commercialize, sell, or trade any transactional session data to advertising networks. Data access is strictly restricted unless lawfully commanded under legal warrants issued by cyber police authorities.</p>
+</body>
+</html>
