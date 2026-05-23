@@ -1,299 +1,188 @@
  <!DOCTYPE html>
-<html lang="en">
+<html lang="mr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Video Chat - Login</title>
     <style>
-        :root {
-            --bg-color: #0f1123;
-            --card-bg: #1b1d36;
-            --accent-color: #00ecff;
-            --text-color: #ffffff;
-            --text-muted: #a0a5c1;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            color: #333;
         }
 
         .login-container {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 400px;
-            box-sizing: border-box;
+            text-align: center;
         }
 
         h2 {
-            text-align: center;
-            margin-top: 0;
-            color: var(--text-color);
-        }
-
-        #userCountText {
-            text-align: center;
-            font-size: 14px;
-            color: #28a745;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .method-selection {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: #000;
-        }
-
-        .btn-primary:disabled {
-            background-color: #3a415a;
-            color: #727b9a;
-            cursor: not-allowed;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-color);
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-color: var(--accent-color);
-        }
-
-        .btn-google {
-            background-color: #df4a32;
-            color: white;
+            margin-bottom: 25px;
+            color: #4a148c;
+            font-size: 28px;
         }
 
         .form-group {
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+            margin-bottom: 20px;
+            text-align: left;
         }
 
         label {
-            font-size: 13px;
-            color: var(--text-muted);
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
         }
 
-        .auth-field, select {
+        input, select {
             width: 100%;
-            padding: 10px;
-            background: #252849;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border: 2px solid #e0e0e0;
             border-radius: 8px;
-            color: white;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        .auth-field:focus, select:focus {
+            font-size: 16px;
+            transition: border-color 0.3s ease;
             outline: none;
-            border-color: var(--accent-color);
         }
 
-        .checkbox-group {
+        input:focus, select:focus {
+            border-color: #764ba2;
+        }
+
+        .btn-container {
             display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            margin: 15px 0;
-            font-size: 13px;
-            color: var(--text-muted);
+            gap: 15px;
+            margin-top: 25px;
         }
 
-        .checkbox-group input {
-            margin-top: 3px;
-        }
-
-        .back-btn {
-            background: none;
+        button {
+            flex: 1;
+            padding: 14px;
             border: none;
-            color: var(--accent-color);
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 13px;
-            padding: 0;
-            margin-bottom: 15px;
-            text-decoration: underline;
+            transition: transform 0.2s, background-color 0.3s;
+            color: white;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #textChatBtn {
+            background-color: #00b0ff;
+        }
+
+        #textChatBtn:hover {
+            background-color: #0091ea;
+        }
+
+        #videoChatBtn {
+            background-color: #00e676;
+        }
+
+        #videoChatBtn:hover {
+            background-color: #00c853;
         }
     </style>
 </head>
 <body>
 
     <div class="login-container">
-        <h2>Join Video Chat 🚀</h2>
-        <div id="userCountText">Connecting to server... 🟢</div>
+        <h2>Premium Chat 🚀</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="तुमचे नाव टाका..." required autocomplete="off">
+            </div>
 
-        <div id="methodSelection" class="method-selection">
-            <button class="btn btn-outline" onclick="switchForm('guestForm')">👤 Continue as Guest</button>
-            <button class="btn btn-outline" onclick="switchForm('phoneForm')">📱 Login with Phone OTP</button>
-            <button class="btn btn-outline" onclick="switchForm('emailForm')">✉️ Login with Email</button>
-            <button class="btn btn-google" onclick="handleGoogleLogin()">🌐 Sign In with Google</button>
-        </div>
+            <div class="form-group">
+                <label for="gender">तुमचे जेंडर (Your Gender):</label>
+                <select id="gender">
+                    <option value="male">पुरुष (Male)</option>
+                    <option value="female">स्त्री (Female)</option>
+                </select>
+            </div>
 
-        <form id="mainLoginForm">
-            <div id="commonFilters" style="display: none;">
-                <button type="button" class="back-btn" onclick="showMethods()">⬅️ Change Login Method</button>
-                
-                <div id="dynamicInputs" class="form-group"></div>
+            <div class="form-group">
+                <label for="matchFilter">तुम्हाला कोणासोबत जोडायचे? (Match Partner):</label>
+                <select id="matchFilter">
+                    <option value="all">सर्व (Everyone)</option>
+                    <option value="male">फक्त पुरुष (Male Only)</option>
+                    <option value="female">फक्त स्त्रिया (Female Only)</option>
+                </select>
+            </div>
 
-                <div class="form-group">
-                    <label for="genderInput">Your Gender</label>
-                    <select id="genderInput" required>
-                        <option value="male">Male ♂️</option>
-                        <option value="female">Female ♀️</option>
-                        <option value="other">Other 👤</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="location">लोकेशन (Location):</label>
+                <select id="location">
+                    <option value="Global">Global (पूर्ण जग)</option>
+                    <option value="India">India (भारत)</option>
+                    <option value="Maharashtra">Maharashtra (महाराष्ट्र)</option>
+                </select>
+            </div>
 
-                <div class="form-group">
-                    <label for="filterInput">Looking For (Match Preference)</label>
-                    <select id="filterInput" required>
-                        <option value="all">Everyone 🌍</option>
-                        <option value="male">Males Only ♂️</option>
-                        <option value="female">Females Only ♀️</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="locationInput">Your Location / Region</label>
-                    <select id="locationInput" required>
-                        <option value="India">India 🇮🇳</option>
-                        <option value="Global">Global 🌐</option>
-                    </select>
-                </div>
-
-                <div class="checkbox-group">
-                    <input type="checkbox" id="agreeCheckbox">
-                    <label for="agreeCheckbox">I agree to the community guidelines. No nudity, bullying, or abusive behavior allowed.</label>
-                </div>
-
-                <button type="submit" id="startBtn" class="btn btn-primary" disabled>Start Chatting ➡️</button>
+            <div class="btn-container">
+                <button type="button" id="textChatBtn">Text Chat 💬</button>
+                <button type="button" id="videoChatBtn">Video Chat 📹</button>
             </div>
         </form>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
-        const methodSelection = document.getElementById('methodSelection');
-        const commonFilters = document.getElementById('commonFilters');
-        const dynamicInputs = document.getElementById('dynamicInputs');
-        const agreeCheckbox = document.getElementById('agreeCheckbox');
-        const startBtn = document.getElementById('startBtn');
-        const userCountText = document.getElementById('userCountText');
-
-        let currentMethod = "";
-
-        socket.on('updateOnlineCount', (count) => {
-            if (userCountText) userCountText.innerText = `${count} Active Users Online 🟢`;
+        // बटनांचे क्लिक इव्हेंट्स (पेज रिफ्रेश रोखण्यासाठी e.preventDefault() वापरले आहे)
+        document.getElementById('textChatBtn').addEventListener('click', (e) => {
+            e.preventDefault(); 
+            handleLogin('text');
         });
 
-        agreeCheckbox.addEventListener('change', () => {
-            startBtn.disabled = !agreeCheckbox.checked;
+        document.getElementById('videoChatBtn').addEventListener('click', (e) => {
+            e.preventDefault(); 
+            handleLogin('video');
         });
 
-        function switchForm(method) {
-            currentMethod = method;
-            methodSelection.style.display = 'none';
-            commonFilters.style.display = 'block';
+        function handleLogin(mode) {
+            const username = document.getElementById('username').value.trim();
+            const gender = document.getElementById('gender').value;
+            const matchFilter = document.getElementById('matchFilter').value;
+            const location = document.getElementById('location').value;
 
-            if (method === 'guestForm') {
-                dynamicInputs.innerHTML = `
-                    <label>Guest Nickname</label>
-                    <input type="text" id="usernameInput" class="auth-field" placeholder="Enter guest name..." required autocomplete="off">
-                `;
-            } else if (method === 'phoneForm') {
-                dynamicInputs.innerHTML = `
-                    <label>Phone Number</label>
-                    <input type="tel" id="usernameInput" class="auth-field" placeholder="+91 9876543210" required autocomplete="off">
-                    <label style="margin-top: 8px;">Enter OTP</label>
-                    <input type="text" class="auth-field" placeholder="Enter 4-digit OTP (Simulated)" autocomplete="off">
-                `;
-            } else if (method === 'emailForm') {
-                dynamicInputs.innerHTML = `
-                    <label>Email Address</label>
-                    <input type="email" id="usernameInput" class="auth-field" placeholder="name@email.com" required autocomplete="off">
-                    <label style="margin-top: 8px;">Password</label>
-                    <input type="password" class="auth-field" placeholder="Enter password" required>
-                `;
-            }
-        }
-
-        function showMethods() {
-            methodSelection.style.display = 'flex';
-            commonFilters.style.display = 'none';
-            agreeCheckbox.checked = false;
-            startBtn.disabled = true;
-        }
-
-        function handleGoogleLogin() {
-            alert("Google Sign-In Clicked!\n(Simulated Dynamic Flow)");
-            switchForm('guestForm');
-            setTimeout(() => {
-                const input = document.getElementById('usernameInput');
-                if(input) input.value = "Google_User_" + Math.floor(Math.random() * 100);
-            }, 50);
-        }
-
-        document.getElementById('mainLoginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            if (!agreeCheckbox.checked) {
-                alert("Please agree to the community guidelines to proceed.");
+            if (!username) {
+                alert("कृपया तुमचे नाव (Username) टाईप करा!");
                 return;
             }
 
-            const inputElement = document.getElementById('usernameInput');
-            let finalUsername = "Anonymous";
-            
-            if (inputElement && inputElement.value.trim() !== "") {
-                finalUsername = inputElement.value.trim();
-            }
-
-            // 'matchFilter' मध्ये मॅचिंग जेंडर (male/female/all) आणि 'filter' मध्ये कॅमेरा इफेक्ट डीफॉल्ट 'none' ठेवला आहे.
+            // युजरचा डेटा एका ऑब्जेक्टमध्ये गोळा करणे
             const userData = {
-                username: finalUsername,
-                gender: document.getElementById('genderInput').value,
-                matchFilter: document.getElementById('filterInput').value, 
-                filter: 'none', 
-                location: document.getElementById('locationInput').value
+                username: username,
+                gender: gender,
+                matchFilter: matchFilter,
+                location: location,
+                chatMode: mode
             };
 
+            // हा डेटा तात्पुरता ब्राउझरच्या स्टोरेजमध्ये सेव्ह करणे
             sessionStorage.setItem('chatUser', JSON.stringify(userData));
-            
-            socket.disconnect();
-            window.location.href = '/index.html'; // तुमच्या मुख्य चॅट फाईलचे नाव (उदा. index.html)
-        });
+
+            // मुख्य चॅटिंग पेजवर युजरला पाठवणे
+            window.location.href = '/index.html'; 
+        }
     </script>
 </body>
 </html>
